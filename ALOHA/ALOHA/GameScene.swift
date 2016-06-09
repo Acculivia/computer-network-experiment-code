@@ -92,8 +92,10 @@ class GameScene: SKScene {
         if(sendingStation != nil){
             if(hasSignalsSend > 1){
                 for station in stations{
-                    station.station.resend()
-                    station.node.fillColor = UIColor.redColor()
+                    if(station.station.count == 0){
+                        station.station.resend()
+                        station.node.fillColor = UIColor.redColor()
+                    }
                 }
                 hasSignalsSend = 0
             }else{
@@ -106,6 +108,7 @@ class GameScene: SKScene {
         
         if(count == 0){
             currentSendingPercentage.position.y = (up - down) * calculate + down
+            print(calculate)
             calculate = 0
             count = Int(calculateDuration)
         }
